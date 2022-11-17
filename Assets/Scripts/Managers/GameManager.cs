@@ -9,10 +9,10 @@ public class GameManager : MonoBehaviour
     public bool autoStart = false;
 
     [Header("Public References")]
-    public NavMeshSurface navMesh;
+    // public NavMeshSurface navMesh;
     public GameObject player;
 
-    private List<ThinkingPlaceable> enemies;
+    // private List<ThinkingPlaceable> enemies;
     private bool gameOver = false;
     private bool updateAllPlaceables = false;
 
