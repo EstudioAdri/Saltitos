@@ -8,6 +8,9 @@ public class PlaceableData : ScriptableObject
     public Placeable.PlaceableType pType;
     public GameObject associatedPrefab;
     public GameObject alternatePrefab;
+
+    [Header("Enemy actions and stats")]
+    public float speed;
     
 
     
