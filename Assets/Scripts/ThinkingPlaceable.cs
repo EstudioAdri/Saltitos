@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ThinkingPlaceable : Placeable
 {
@@ -12,7 +13,7 @@ public class ThinkingPlaceable : Placeable
         Attacking,
         Dead
     }    
-    public enum AtackType
+    public enum AttackType
     {
         Melee,
         Ranged
@@ -26,8 +27,21 @@ public class ThinkingPlaceable : Placeable
     [HideInInspector] public float lastBlowTime = -1000f;
     [HideInInspector] public float damage;
     [HideInInspector] public AudioClip attackAudioClip;
+    protected AudioSource audioSource;
 
     [HideInInspector] public float timeToActNext = 0f;
+
+    [Header("Projectile for Ranged")]
+    public GameObject projectilePrefab;
+    public Transform projectileSpawnPoint;
+
+    public UnityAction<ThinkingPlaceable> OnDealDamage, OnProjectileFired;
+
+    public virtual void SetTarget(ThinkingPlaceable t)
+    {
+        target = t;
+        t.OnDie += TargetIsDead;
+    }
 
     public virtual void StartAttack()
     {
@@ -42,6 +56,15 @@ public class ThinkingPlaceable : Placeable
     {
         state = States.Seeking;
     }
+    protected void TargetIsDead(Placeable p)
+    {
+        //Debug.Log("My target " + p.name + " is dead", gameObject);
+        state = States.Idle;
+
+        target.OnDie -= TargetIsDead;
+
+        timeToActNext = lastBlowTime + attackRatio;
+    }
     public bool IsTargetInRange()
     {
         return (transform.position - target.transform.position).sqrMagnitude <= attackRange * attackRange;
@@ -52,7 +75,10 @@ public class ThinkingPlaceable : Placeable
     }
     protected virtual void Die()
     {
-        state = States.Dead;        
+        state = States.Dead;
+
+        if (OnDie != null)
+            OnDie(this);
 
     }
 
