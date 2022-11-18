@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 
         // use in else when multiple targets iterate distances over all elements in list
         // and save min as min to assign to targetToPass.
-        float minDistance = Mathf.Infinity;
+        // float minDistance = Mathf.Infinity;
 
         if (targetType == Spawnable.SpawnableTarget.Player)
         {
@@ -130,8 +130,14 @@ public class GameManager : MonoBehaviour
     {
         switch (spawnableDataRef.sType)
         {
+            case Spawnable.SpawnableType.Entity:
+                Entity entityScript = go.GetComponent<Entity>();
+                entityScript.Activate(spawnableFaction, spawnableDataRef);
+                AddSpawnableToList(entityScript);
+                break;
+
             case Spawnable.SpawnableType.Enemy:
-                Enemy enemyScript = go.GetComponent<Enemy>();
+                Entity enemyScript = go.GetComponent<Entity>();
                 enemyScript.Activate(spawnableFaction, spawnableDataRef);
                 AddSpawnableToList(enemyScript);
                 break;
