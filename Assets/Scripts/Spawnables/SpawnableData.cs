@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaceableData : ScriptableObject
+public class SpawnableData : ScriptableObject
 {
     [Header("Common")]
-    public Placeable.PlaceableType pType;
+    public Spawnable.SpawnableType sType;
     public GameObject associatedPrefab;
     public GameObject alternatePrefab;
 
@@ -13,8 +13,8 @@ public class PlaceableData : ScriptableObject
     public float speed;
 
     [Header("Enemies")]
-    public ThinkingPlaceable.AttackType attackType = ThinkingPlaceable.AttackType.Melee;
-    public Placeable.PlaceableTarget targetType = Placeable.PlaceableTarget.Both;
+    public ThinkingSpawnable.AttackType attackType = ThinkingSpawnable.AttackType.Melee;
+    public Spawnable.SpawnableTarget targetType = Spawnable.SpawnableTarget.Both;
     public float attackRatio = 1f; //time between attacks
     public float damagePerAttack = 2f; //damage each attack deals
     public float attackRange = 1f;

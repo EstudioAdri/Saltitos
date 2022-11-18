@@ -9,12 +9,11 @@ public class GameManager : MonoBehaviour
     public bool autoStart = false;
 
     [Header("Public References")]
-    // public NavMeshSurface navMesh;
     public GameObject player;
 
     // private List<ThinkingPlaceable> enemies;
     private bool gameOver = false;
-    private bool updateAllPlaceables = false;
+    private bool updateAllSpawnables = false;
 
     // Start is called before the first frame update
     void Start()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ThinkingPlaceable : Placeable
+public class ThinkingSpawnable : Spawnable
 {
     [HideInInspector]public States state;
     public enum States
@@ -19,7 +19,7 @@ public class ThinkingPlaceable : Placeable
         Ranged
     }
 
-    [HideInInspector] public ThinkingPlaceable target;
+    [HideInInspector] public ThinkingSpawnable target;
 
     [HideInInspector] public float hitPoints;
     [HideInInspector] public float attackRange;
@@ -35,9 +35,9 @@ public class ThinkingPlaceable : Placeable
     public GameObject projectilePrefab;
     public Transform projectileSpawnPoint;
 
-    public UnityAction<ThinkingPlaceable> OnDealDamage, OnProjectileFired;
+    public UnityAction<ThinkingSpawnable> OnDealDamage, OnProjectileFired;
 
-    public virtual void SetTarget(ThinkingPlaceable t)
+    public virtual void SetTarget(ThinkingSpawnable t)
     {
         target = t;
         t.OnDie += TargetIsDead;
@@ -56,7 +56,7 @@ public class ThinkingPlaceable : Placeable
     {
         state = States.Seeking;
     }
-    protected void TargetIsDead(Placeable p)
+    protected void TargetIsDead(Spawnable p)
     {
         //Debug.Log("My target " + p.name + " is dead", gameObject);
         state = States.Idle;
