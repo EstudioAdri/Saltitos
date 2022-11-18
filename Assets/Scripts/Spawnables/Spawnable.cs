@@ -17,6 +17,7 @@ public class Spawnable : MonoBehaviour
         Player,
         Enemy,
         Item,
+        Turret,
     }
 
     public enum SpawnableTarget
@@ -24,12 +25,14 @@ public class Spawnable : MonoBehaviour
         Player,
         Enemy,
         Both,
+        Turret,
     }
 
     public enum Faction
     {
         Player,
         Enemy,
+        Turret,
         None,
     }
 }
