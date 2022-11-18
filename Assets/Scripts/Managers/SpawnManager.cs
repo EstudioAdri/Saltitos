@@ -21,8 +21,8 @@ public class SpawnManager : MonoBehaviour
         {
             if (OnSpawn != null)
             {
-                SpawnableData test = new SpawnableData()
-                OnSpawn(, hit.point + inputCreationOffset, Spawnable.Faction.Enemy);
+                
+                // OnSpawn(, hit.point + inputCreationOffset, Spawnable.Faction.Enemy);
                 
             }
         }

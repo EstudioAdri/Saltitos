@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "NewSpawnable", menuName = "Saltitos/Spawnable Data")]
 public class SpawnableData : ScriptableObject
 {
     [Header("Common")]
