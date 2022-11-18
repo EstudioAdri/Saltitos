@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fbde65a8211fc54cba2def6f2febe35, type: 3}
   m_Name: NewSpawnable
   m_EditorClassIdentifier: 
-  sType: 0
+  sType: 4
   associatedPrefab: {fileID: 0}
   alternatePrefab: {fileID: 0}
   speed: 0
   attackType: 0
-  targetType: 2
+  targetType: 4
   attackRatio: 1
   damagePerAttack: 2
   attackRange: 1

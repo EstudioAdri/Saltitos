@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : ThinkingSpawnable
+public class Entity : ThinkingSpawnable
 
 {
     private float speed;

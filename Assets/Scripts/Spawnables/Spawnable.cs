@@ -19,7 +19,8 @@ public class Spawnable : MonoBehaviour
         Building,
         Item,
         Turret,
-        Castle
+        Castle,
+        Entity
     }
 
     public enum SpawnableTarget
