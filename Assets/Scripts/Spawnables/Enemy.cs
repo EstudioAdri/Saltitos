@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : ThinkingPlaceable
+public class Enemy : ThinkingSpawnable
 
 {
     private float speed;
@@ -13,24 +13,24 @@ public class Enemy : ThinkingPlaceable
 
     private void Awake()
     {
-        pType = Placeable.PlaceableType.Enemy;
+        sType = Spawnable.SpawnableType.Enemy;
 
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>(); //will be disabled until Activate is called
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void Activate(Faction pFaction, PlaceableData pData)
+    public void Activate(Faction sFaction, SpawnableData sData)
     {
-        faction = pFaction;
-        hitPoints = pData.hitPoints;
-        targetType = pData.targetType;
-        attackRange = pData.attackRange;
-        attackRatio = pData.attackRatio;
-        speed = pData.speed;
-        damage = pData.damagePerAttack;
-        attackAudioClip = pData.attackClip;
-        dieAudioClip = pData.dieClip;
+        faction = sFaction;
+        hitPoints = sData.hitPoints;
+        targetType = sData.targetType;
+        attackRange = sData.attackRange;
+        attackRatio = sData.attackRatio;
+        speed = sData.speed;
+        damage = sData.damagePerAttack;
+        attackAudioClip = sData.attackClip;
+        dieAudioClip = sData.dieClip;
         //TODO: add more as necessary
 
         navMeshAgent.speed = speed;
@@ -40,7 +40,7 @@ public class Enemy : ThinkingPlaceable
         navMeshAgent.enabled = true;
     }
 
-    public override void SetTarget(ThinkingPlaceable t)
+    public override void SetTarget(ThinkingSpawnable t)
     {
         base.SetTarget(t);
     }

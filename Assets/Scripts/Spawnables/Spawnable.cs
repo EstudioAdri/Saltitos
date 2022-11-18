@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Placeable : MonoBehaviour
+public class Spawnable : MonoBehaviour
 {
-    public PlaceableType pType;
+    public SpawnableType sType;
 
     [HideInInspector] public Faction faction;
-    [HideInInspector] public PlaceableTarget targetType; //TODO: move to ThinkingPlaceable?
+    [HideInInspector] public SpawnableTarget targetType; //TODO: move to ThinkingPlaceable?
     [HideInInspector] public AudioClip dieAudioClip;
 
-    public UnityAction<Placeable> OnDie;
-    public enum PlaceableType
+    public UnityAction<Spawnable> OnDie;
+    public enum SpawnableType
     {
         Player,
         Enemy,
         Item,
     }
 
-    public enum PlaceableTarget
+    public enum SpawnableTarget
     {
         Player,
         Enemy,
