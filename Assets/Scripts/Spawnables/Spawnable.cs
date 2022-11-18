@@ -16,6 +16,7 @@ public class Spawnable : MonoBehaviour
     {
         Player,
         Enemy,
+        Building,
         Item,
         Turret,
         Castle

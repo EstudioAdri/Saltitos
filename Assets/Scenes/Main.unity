@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -245,6 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 211908153}
   - component: {fileID: 211908152}
+  - component: {fileID: 211908154}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -265,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoStart: 0
-  player: {fileID: 0}
+  playerCastle: {fileID: 0}
 --- !u!4 &211908153
 Transform:
   m_ObjectHideFlags: 0
@@ -281,6 +282,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &211908154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211908151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 204ba22245c874566bb32b4d0b9003b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &413629089
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,7 +822,7 @@ GameObject:
   - component: {fileID: 1647575112968060497}
   - component: {fileID: 4198254676154185408}
   - component: {fileID: 2020083839739709626}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Road
   m_TagString: Untagged
   m_Icon: {fileID: 0}
