@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     private bool gameOver = false;
     private bool updateAllSpawnables = false;
 
+
     private void Awake()
     {
         playerBuildings = new List<ThinkingSpawnable>();
@@ -41,8 +42,12 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GameOver()
+    {
+
+    }
+
+    public void Update()
     {
         if (gameOver)
             return;
