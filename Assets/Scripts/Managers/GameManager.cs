@@ -9,20 +9,30 @@ public class GameManager : MonoBehaviour
     public bool autoStart = false;
 
     [Header("Public References")]
-    private bool gameOver = false;
-    private bool updateAllSpawnables = false;
+    public GameObject playerCastle;
+
+    private SpawnManager spawnManager;
+
     private List<ThinkingSpawnable> playerBuildings, playerUnits, enemyUnits;
     private List<ThinkingSpawnable> allPlayer, allEnemy;
     private List<ThinkingSpawnable> allThinkingSpawnables;
     private List<ThinkingSpawnable> player;
 
+    private bool gameOver = false;
+    private bool updateAllSpawnables = false;
+
     private void Awake()
     {
         playerBuildings = new List<ThinkingSpawnable>();
+        playerUnits = new List<ThinkingSpawnable>();
         enemyUnits = new List<ThinkingSpawnable>();
-        allThinkingSpawnables = new List<ThinkingSpawnable>();
         allPlayer = new List<ThinkingSpawnable>();
         allEnemy = new List<ThinkingSpawnable>();
+        allThinkingSpawnables = new List<ThinkingSpawnable>();
+        player = new List<ThinkingSpawnable>();
+
+        // listener al spawn del spawnmanager
+        spawnManager.OnSpawn += SpawnSpawnable;
     }
 
     // Start is called before the first frame update
