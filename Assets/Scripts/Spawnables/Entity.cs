@@ -10,7 +10,6 @@ public class Entity : ThinkingSpawnable
 
     private Animator animator;
     private NavMeshAgent navMeshAgent;
-    private SpawnableData spawnableData;
 
     private void Awake()
     {
@@ -31,8 +30,6 @@ public class Entity : ThinkingSpawnable
         damage = sData.damagePerAttack;
         attackAudioClip = sData.attackClip;
         dieAudioClip = sData.dieClip;
-        spawnableData = sData;
-        //TODO: add more as necessary
 
         navMeshAgent.speed = speed;
         animator.SetFloat("MoveSpeed", speed); //will act as multiplier to the speed of the run animation clip

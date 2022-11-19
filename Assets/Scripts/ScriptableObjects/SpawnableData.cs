@@ -21,6 +21,4 @@ public class SpawnableData : ScriptableObject
     public float attackRange = 1f;
     public float hitPoints = 10f; //when units or buildings suffer damage, they lose hitpoints
     public AudioClip attackClip, dieClip;
-
-
 }

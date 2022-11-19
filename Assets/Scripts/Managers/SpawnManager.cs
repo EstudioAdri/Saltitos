@@ -23,7 +23,7 @@ public class SpawnManager : MonoBehaviour
         {
             if (OnSpawn != null)
             {
-                OnSpawn(Resources.Load<SpawnableData>("TestAlien"), hit.point + inputCreationOffset, Spawnable.Faction.Enemy);
+                OnSpawn(Resources.Load<SpawnableData>("Assets/GameData/1 Spawnables/TestAlien.asset"), hit.point + inputCreationOffset, Spawnable.Faction.Enemy);
             }
         }
     }
