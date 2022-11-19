@@ -11,8 +11,7 @@ public class SpawnManager : MonoBehaviour
 
     private Vector3 inputCreationOffset = new Vector3(0f, 0f, 1f); //offsets the creation of units so that they are not under the player's finger
 
-
-    private void SpawnEnemyManual(int enemyId)
+    private void SpawnEnemyManual()
     {
         RaycastHit hit;
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -21,9 +20,7 @@ public class SpawnManager : MonoBehaviour
         {
             if (OnSpawn != null)
             {
-                
-                // OnSpawn(, hit.point + inputCreationOffset, Spawnable.Faction.Enemy);
-                
+                OnSpawn(Resources.Load<SpawnableData>("TestAlien"), hit.point + inputCreationOffset, Spawnable.Faction.Enemy);
             }
         }
     }
@@ -37,6 +34,7 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+            SpawnEnemyManual();
     }
 }

@@ -10,11 +10,11 @@ public class Entity : ThinkingSpawnable
 
     private Animator animator;
     private NavMeshAgent navMeshAgent;
+    private SpawnableData spawnableData;
 
     private void Awake()
     {
         sType = Spawnable.SpawnableType.Enemy;
-
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>(); //will be disabled until Activate is called
         audioSource = GetComponent<AudioSource>();
@@ -31,6 +31,7 @@ public class Entity : ThinkingSpawnable
         damage = sData.damagePerAttack;
         attackAudioClip = sData.attackClip;
         dieAudioClip = sData.dieClip;
+        spawnableData = sData;
         //TODO: add more as necessary
 
         navMeshAgent.speed = speed;

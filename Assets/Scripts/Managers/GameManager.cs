@@ -16,7 +16,10 @@ public class GameManager : MonoBehaviour
     private List<ThinkingSpawnable> playerBuildings, playerUnits, enemyUnits;
     private List<ThinkingSpawnable> allPlayer, allEnemy;
     private List<ThinkingSpawnable> allThinkingSpawnables;
+
+    // These need to be worked on.s
     private List<ThinkingSpawnable> player;
+    private List<ThinkingSpawnable> castle;
 
     private bool gameOver = false;
     private bool updateAllSpawnables = false;
@@ -24,6 +27,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        spawnManager = GetComponent<SpawnManager>();
+
         playerBuildings = new List<ThinkingSpawnable>();
         playerUnits = new List<ThinkingSpawnable>();
         enemyUnits = new List<ThinkingSpawnable>();
@@ -66,6 +71,7 @@ public class GameManager : MonoBehaviour
             {
                 case ThinkingSpawnable.States.Idle:
                     bool targetFound = FindClosestInList(s.transform.position, GetAttackList(s.faction, s.targetType), s.targetType, out targetToPass);
+
                     if (!targetFound)
                         Debug.LogError("No targets found");
 
@@ -95,7 +101,14 @@ public class GameManager : MonoBehaviour
         // and save min as min to assign to targetToPass.
         // float minDistance = Mathf.Infinity;
 
+        // This is wrong and will have to be remade but works for now
         if (targetType == Spawnable.SpawnableTarget.Player)
+        {
+            targetToPass = list[0];
+            targetFound = true;
+        }
+
+        if (targetType == Spawnable.SpawnableTarget.Castle)
         {
             targetToPass = list[0];
             targetFound = true;
@@ -110,6 +123,8 @@ public class GameManager : MonoBehaviour
         {
             case Spawnable.SpawnableTarget.Player:
                 return player;
+            case Spawnable.SpawnableTarget.Castle:
+                return castle;
             default:
                 Debug.LogError("Wrong faction when trying to get attack list");
                 return null;
@@ -154,6 +169,14 @@ public class GameManager : MonoBehaviour
             if (s.sType == Spawnable.SpawnableType.Building)
             {
                 playerBuildings.Add(s);
+            }
+            else if (s.sType == Spawnable.SpawnableType.Castle)
+            {
+                castle.Add(s);
+            }
+            else if (s.sType == Spawnable.SpawnableType.Player)
+            {
+                player.Add(s);
             }
             else
             {
