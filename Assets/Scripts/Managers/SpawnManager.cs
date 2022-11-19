@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class SpawnManager : MonoBehaviour
 {
     public Camera mainCamera;
+
+    // Layer masks que van seteadas en la interfaz
     public LayerMask enemyRoadFieldMask, playerFieldMask;
     public UnityAction<SpawnableData, Vector3, Spawnable.Faction> OnSpawn;
 
@@ -16,6 +18,7 @@ public class SpawnManager : MonoBehaviour
         RaycastHit hit;
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
+        // Comprobamos si el click está dentro del fieldMask donde queremos spawnear enemgios
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, enemyRoadFieldMask))
         {
             if (OnSpawn != null)
@@ -35,6 +38,9 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
+        {
+            // Debug.Log("Button Down OK");
             SpawnEnemyManual();
+        }
     }
 }

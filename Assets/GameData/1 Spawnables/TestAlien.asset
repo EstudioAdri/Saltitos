@@ -17,7 +17,7 @@ MonoBehaviour:
   alternatePrefab: {fileID: 919132149155446097, guid: 5da55e11327d13e4592bd791d754222f, type: 3}
   speed: 1
   attackType: 0
-  targetType: 0
+  targetType: 4
   attackRatio: 1
   damagePerAttack: 2
   attackRange: 1

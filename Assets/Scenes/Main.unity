@@ -294,6 +294,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 204ba22245c874566bb32b4d0b9003b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 963194227}
+  enemyRoadFieldMask:
+    serializedVersion: 2
+    m_Bits: 64
+  playerFieldMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &413629089
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,7 +803,7 @@ GameObject:
   - component: {fileID: 7969312959662861357}
   - component: {fileID: 1506511975432776110}
   - component: {fileID: 2067244461049813815}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
