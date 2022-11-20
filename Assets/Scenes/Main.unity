@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -294,6 +294,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 204ba22245c874566bb32b4d0b9003b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  enemyRoadFieldMask:
+    serializedVersion: 2
+    m_Bits: 0
+  playerFieldMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &413629089
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,6 +803,7 @@ GameObject:
   - component: {fileID: 7969312959662861357}
   - component: {fileID: 1506511975432776110}
   - component: {fileID: 2067244461049813815}
+  - component: {fileID: 7969312959662861358}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -822,6 +830,7 @@ GameObject:
   - component: {fileID: 1647575112968060497}
   - component: {fileID: 4198254676154185408}
   - component: {fileID: 2020083839739709626}
+  - component: {fileID: 4902861084406133684}
   m_Layer: 6
   m_Name: Road
   m_TagString: Untagged
@@ -829,6 +838,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
   m_IsActive: 1
+--- !u!64 &4902861084406133684
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4902861084406133683}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8634060567236447461, guid: 12042b9148f98ff418cbad7d72417655, type: 3}
 --- !u!4 &7969312959662861357
 Transform:
   m_ObjectHideFlags: 0
@@ -844,3 +867,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &7969312959662861358
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2417162535221724383}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1453043773871479701, guid: 12042b9148f98ff418cbad7d72417655, type: 3}
