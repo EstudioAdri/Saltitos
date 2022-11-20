@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5398144348000434575}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.265, y: 0, z: 0}
+  m_LocalPosition: {x: 0.474, y: -0, z: 0.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 8541382416400505891}
   - component: {fileID: 9094276452904950514}
   - component: {fileID: -7519055858156948942}
+  - component: {fileID: 429212484065594053}
   m_Layer: 0
   m_Name: Alien
   m_TagString: Untagged
@@ -129,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba6a1618251624c4486ef7f47f01c2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sType: 0
+  spawnableType: 0
   faction: 0
   targetType: 0
   dieAudioClip: {fileID: 0}
@@ -166,3 +167,16 @@ NavMeshAgent:
   m_BaseOffset: 0.55
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &429212484065594053
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8768162563970878125}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.83412987, y: 2.1999996, z: 1.5999997}
+  m_Center: {x: -0.000000059604645, y: 0.00000023841855, z: 0.98934674}
