@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] int fpsTarget = 120;
+
     [Header("Settings")]
     public bool autoStart = false;
 
@@ -24,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = fpsTarget;
+
         playerBuildings = new List<ThinkingSpawnable>();
         playerUnits = new List<ThinkingSpawnable>();
         enemyUnits = new List<ThinkingSpawnable>();
