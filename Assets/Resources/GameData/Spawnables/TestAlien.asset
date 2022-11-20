@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fbde65a8211fc54cba2def6f2febe35, type: 3}
   m_Name: TestAlien
   m_EditorClassIdentifier: 
+  Faction: 1
   sType: 1
-  associatedPrefab: {fileID: 919132149155446097, guid: 5da55e11327d13e4592bd791d754222f, type: 3}
-  alternatePrefab: {fileID: 919132149155446097, guid: 5da55e11327d13e4592bd791d754222f, type: 3}
+  associatedPrefab: {fileID: 8768162563970878125, guid: 772d28f795a500b40a4c15fd093d2cf1, type: 3}
+  alternatePrefab: {fileID: 8768162563970878125, guid: 772d28f795a500b40a4c15fd093d2cf1, type: 3}
   speed: 1
   attackType: 0
-  targetType: 4
+  targetType: 2
   attackRatio: 1
   damagePerAttack: 2
   attackRange: 1

@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
         updateAllSpawnables = false;
     }
 
-    private bool FindClosestInList(Vector3 p, List<ThinkingSpawnable> list, Spawnable.SpawnableTarget targetType, out ThinkingSpawnable targetToPass)
+    private bool FindClosestInList(Vector3 p, List<ThinkingSpawnable> list, Spawnable.SpawnableType targetType, out ThinkingSpawnable targetToPass)
     {
         targetToPass = null;
 
@@ -102,13 +102,13 @@ public class GameManager : MonoBehaviour
         // float minDistance = Mathf.Infinity;
 
         // This is wrong and will have to be remade but works for now
-        if (targetType == Spawnable.SpawnableTarget.Player)
+        if (targetType == Spawnable.SpawnableType.Player)
         {
             targetToPass = list[0];
             targetFound = true;
         }
 
-        if (targetType == Spawnable.SpawnableTarget.Castle)
+        if (targetType == Spawnable.SpawnableType.Castle)
         {
             targetToPass = list[0];
             targetFound = true;
@@ -117,13 +117,13 @@ public class GameManager : MonoBehaviour
         return targetFound;
     }
 
-    private List<ThinkingSpawnable> GetAttackList(Spawnable.Faction f, Spawnable.SpawnableTarget spawnableTarget)
+    private List<ThinkingSpawnable> GetAttackList(Spawnable.Faction f, Spawnable.SpawnableType spawnableTarget)
     {
         switch (spawnableTarget)
         {
-            case Spawnable.SpawnableTarget.Player:
+            case Spawnable.SpawnableType.Player:
                 return player;
-            case Spawnable.SpawnableTarget.Castle:
+            case Spawnable.SpawnableType.Castle:
                 return castle;
             default:
                 Debug.LogError("Wrong faction when trying to get attack list");
@@ -131,32 +131,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SpawnSpawnable(SpawnableData spawnData, Vector3 position, Spawnable.Faction spawnableFaction)
+    private void SpawnSpawnable(SpawnableData spawnData, Vector3 position)
     {
         GameObject enemyPrefabToSpawn = spawnData.associatedPrefab;
         GameObject newSpawnableGO = Instantiate<GameObject>(enemyPrefabToSpawn, position, Quaternion.identity);
-        SetupSpawnable(newSpawnableGO, spawnData, spawnableFaction);
+        SetupSpawnable(newSpawnableGO, spawnData);
 
         // This way we start updating after an spawnable has been instantiated
         updateAllSpawnables = true;
     }
 
-    private void SetupSpawnable(GameObject go, SpawnableData spawnableDataRef, Spawnable.Faction spawnableFaction)
+    private void SetupSpawnable(GameObject go, SpawnableData spawnableData)
     {
-        switch (spawnableDataRef.sType)
-        {
-            case Spawnable.SpawnableType.Entity:
-                Entity entityScript = go.GetComponent<Entity>();
-                entityScript.Activate(spawnableFaction, spawnableDataRef);
-                AddSpawnableToList(entityScript);
-                break;
-
-            case Spawnable.SpawnableType.Enemy:
-                Entity enemyScript = go.GetComponent<Entity>();
-                enemyScript.Activate(spawnableFaction, spawnableDataRef);
-                AddSpawnableToList(enemyScript);
-                break;
-        }
+        Entity entityScript = go.GetComponent<Entity>();
+        entityScript.Activate(spawnableData);
+        AddSpawnableToList(entityScript);
     }
 
     private void AddSpawnableToList(ThinkingSpawnable s)
@@ -166,15 +155,15 @@ public class GameManager : MonoBehaviour
         if (s.faction == Spawnable.Faction.Player)
         {
             allPlayer.Add(s);
-            if (s.sType == Spawnable.SpawnableType.Building)
+            if (s.spawnableType == Spawnable.SpawnableType.Building)
             {
                 playerBuildings.Add(s);
             }
-            else if (s.sType == Spawnable.SpawnableType.Castle)
+            else if (s.spawnableType == Spawnable.SpawnableType.Castle)
             {
                 castle.Add(s);
             }
-            else if (s.sType == Spawnable.SpawnableType.Player)
+            else if (s.spawnableType == Spawnable.SpawnableType.Player)
             {
                 player.Add(s);
             }
@@ -186,7 +175,7 @@ public class GameManager : MonoBehaviour
         else if (s.faction == Spawnable.Faction.Enemy)
         {
             allEnemy.Add(s);
-            if (s.sType == Spawnable.SpawnableType.Enemy)
+            if (s.spawnableType == Spawnable.SpawnableType.Entity)
             {
                 enemyUnits.Add(s);
             }

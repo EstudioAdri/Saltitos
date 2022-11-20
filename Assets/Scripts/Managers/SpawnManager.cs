@@ -9,11 +9,11 @@ public class SpawnManager : MonoBehaviour
 
     // Layer masks que van seteadas en la interfaz
     public LayerMask enemyRoadFieldMask, playerFieldMask;
-    public UnityAction<SpawnableData, Vector3, Spawnable.Faction> OnSpawn;
+    public UnityAction<SpawnableData, Vector3> OnSpawn;
 
     private Vector3 inputCreationOffset = new Vector3(0f, 0f, 1f); //offsets the creation of units so that they are not under the player's finger
 
-    private void SpawnEnemyManual()
+    private void SpawnEntityManual(Spawnable.SpawnableType type)
     {
         RaycastHit hit;
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -23,7 +23,15 @@ public class SpawnManager : MonoBehaviour
         {
             if (OnSpawn != null)
             {
-                OnSpawn(Resources.Load<SpawnableData>("Assets/GameData/1 Spawnables/TestAlien.asset"), hit.point + inputCreationOffset, Spawnable.Faction.Enemy);
+                switch (type)
+                {
+                    case Spawnable.SpawnableType.Entity:
+                        OnSpawn(Resources.Load<SpawnableData>("GameData/Spawnables/TestAlien"), hit.point + inputCreationOffset);
+                        break;
+                    case Spawnable.SpawnableType.Castle:
+                        OnSpawn(Resources.Load<SpawnableData>("GameData/Spawnables/TestCastle"), hit.point + inputCreationOffset);
+                        break;
+                } 
             }
         }
     }
@@ -40,7 +48,13 @@ public class SpawnManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             // Debug.Log("Button Down OK");
-            SpawnEnemyManual();
+            SpawnEntityManual(Spawnable.SpawnableType.Entity);
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            // Debug.Log("Button Down OK");
+            SpawnEntityManual(Spawnable.SpawnableType.Castle);
         }
     }
 }
