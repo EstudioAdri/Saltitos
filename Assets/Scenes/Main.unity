@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -804,8 +804,7 @@ GameObject:
   - component: {fileID: 1506511975432776110}
   - component: {fileID: 2067244461049813815}
   - component: {fileID: 7969312959662861358}
-  - component: {fileID: 7969312959662861359}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -831,6 +830,7 @@ GameObject:
   - component: {fileID: 1647575112968060497}
   - component: {fileID: 4198254676154185408}
   - component: {fileID: 2020083839739709626}
+  - component: {fileID: 4902861084406133684}
   m_Layer: 6
   m_Name: Road
   m_TagString: Untagged
@@ -859,7 +859,7 @@ MeshCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2417162535221724383}
+  m_GameObject: {fileID: 4902861084406133683}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
