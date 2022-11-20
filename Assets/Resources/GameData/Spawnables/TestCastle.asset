@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fbde65a8211fc54cba2def6f2febe35, type: 3}
-  m_Name: NewSpawnable
+  m_Name: TestCastle
   m_EditorClassIdentifier: 
-  sType: 4
-  associatedPrefab: {fileID: 0}
-  alternatePrefab: {fileID: 0}
+  sType: 5
+  associatedPrefab: {fileID: 8768162563970878125, guid: 772d28f795a500b40a4c15fd093d2cf1, type: 3}
+  alternatePrefab: {fileID: 8768162563970878125, guid: 772d28f795a500b40a4c15fd093d2cf1, type: 3}
   speed: 0
   attackType: 0
-  targetType: 4
+  targetType: 1
   attackRatio: 1
   damagePerAttack: 2
   attackRange: 1

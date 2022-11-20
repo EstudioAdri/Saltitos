@@ -13,25 +13,23 @@ public class Entity : ThinkingSpawnable
 
     private void Awake()
     {
-        sType = Spawnable.SpawnableType.Enemy;
-
+        spawnableType = Spawnable.SpawnableType.Entity;
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>(); //will be disabled until Activate is called
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void Activate(Faction sFaction, SpawnableData sData)
+    public void Activate(SpawnableData spawnableDataRef)
     {
-        faction = sFaction;
-        hitPoints = sData.hitPoints;
-        targetType = sData.targetType;
-        attackRange = sData.attackRange;
-        attackRatio = sData.attackRatio;
-        speed = sData.speed;
-        damage = sData.damagePerAttack;
-        attackAudioClip = sData.attackClip;
-        dieAudioClip = sData.dieClip;
-        //TODO: add more as necessary
+        faction = spawnableDataRef.Faction;
+        hitPoints = spawnableDataRef.hitPoints;
+        targetType = spawnableDataRef.targetType;
+        attackRange = spawnableDataRef.attackRange;
+        attackRatio = spawnableDataRef.attackRatio;
+        speed = spawnableDataRef.speed;
+        damage = spawnableDataRef.damagePerAttack;
+        attackAudioClip = spawnableDataRef.attackClip;
+        dieAudioClip = spawnableDataRef.dieClip;
 
         navMeshAgent.speed = speed;
         animator.SetFloat("MoveSpeed", speed); //will act as multiplier to the speed of the run animation clip
