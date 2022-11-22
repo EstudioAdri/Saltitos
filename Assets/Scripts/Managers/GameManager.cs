@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] int fpsTarget = 120;
+    [SerializeField] private GameObject playerPrefab;
 
     [Header("Settings")]
     public bool autoStart = false;
@@ -13,14 +14,17 @@ public class GameManager : MonoBehaviour
     [Header("Public References")]
 
     private SpawnManager spawnManager;
+    
 
     private List<ThinkingSpawnable> playerBuildings, playerUnits, enemyUnits;
     private List<ThinkingSpawnable> allPlayer, allEnemy;
     private List<ThinkingSpawnable> allThinkingSpawnables;
+    
 
     // These need to be worked on.s
     private List<ThinkingSpawnable> player;
     [SerializeField] private ThinkingSpawnable castle;
+
 
     // private bool gameOver = false;
     private bool updateAllSpawnables = false;
@@ -28,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+
+        
 
         Application.targetFrameRate = fpsTarget;
         spawnManager = GetComponent<SpawnManager>();
@@ -40,6 +46,8 @@ public class GameManager : MonoBehaviour
         allThinkingSpawnables = new List<ThinkingSpawnable>();
         player = new List<ThinkingSpawnable>();
 
+
+
         // listener al spawn del spawnmanager
         spawnManager.OnSpawn += SpawnSpawnable;
     }
@@ -47,7 +55,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameObject playerInstantiation = Instantiate<GameObject>(playerPrefab);
+        playerInstantiation.transform.position = new Vector3(10, 0, 10);
     }
 
     public void GameOver()
