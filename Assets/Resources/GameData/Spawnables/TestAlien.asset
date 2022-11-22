@@ -16,7 +16,7 @@ MonoBehaviour:
   sType: 1
   associatedPrefab: {fileID: 8768162563970878125, guid: 772d28f795a500b40a4c15fd093d2cf1, type: 3}
   alternatePrefab: {fileID: 8768162563970878125, guid: 772d28f795a500b40a4c15fd093d2cf1, type: 3}
-  speed: 2
+  speed: 4
   attackType: 0
   targetType: 2
   attackRatio: 1

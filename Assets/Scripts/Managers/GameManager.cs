@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Settings")]
     public bool autoStart = false;
+    private bool once;
 
     [Header("Public References")]
 
@@ -28,7 +29,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-
         Application.targetFrameRate = fpsTarget;
         spawnManager = GetComponent<SpawnManager>();
 
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        once = true;
     }
 
     public void GameOver()
@@ -61,6 +61,12 @@ public class GameManager : MonoBehaviour
         if (gameOver)
             return;
         */
+        if (once)
+        {
+            StartCoroutine(spawnManager.SpawnPeriodic(Spawnable.SpawnableType.Entity, Spawnable.Faction.Enemy));
+            once = false;
+        }
+
 
         ThinkingSpawnable targetToPass;
         ThinkingSpawnable s;
