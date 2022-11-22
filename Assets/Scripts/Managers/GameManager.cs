@@ -138,7 +138,8 @@ public class GameManager : MonoBehaviour
     private void SpawnSpawnable(SpawnableData spawnData, Vector3 position)
     {
         GameObject enemyPrefabToSpawn = spawnData.associatedPrefab;
-        GameObject newSpawnableGO = Instantiate<GameObject>(enemyPrefabToSpawn, position, Quaternion.identity);
+        GameObject newSpawnableGO = Instantiate<GameObject>(enemyPrefabToSpawn);
+        newSpawnableGO.transform.position = position;
         SetupSpawnable(newSpawnableGO, spawnData);
 
         // This way we start updating after an spawnable has been instantiated

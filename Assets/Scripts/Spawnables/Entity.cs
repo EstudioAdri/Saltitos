@@ -17,6 +17,8 @@ public class Entity : ThinkingSpawnable
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>(); //will be disabled until Activate is called
         audioSource = GetComponent<AudioSource>();
+
+        navMeshAgent.updateRotation = false;
     }
 
     public void Activate(SpawnableData spawnableDataRef)
