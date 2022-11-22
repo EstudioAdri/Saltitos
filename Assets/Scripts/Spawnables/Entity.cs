@@ -14,7 +14,7 @@ public class Entity : ThinkingSpawnable
     private void Awake()
     {
         spawnableType = Spawnable.SpawnableType.Entity;
-        animator = GetComponent<Animator>();
+        // animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>(); //will be disabled until Activate is called
         audioSource = GetComponent<AudioSource>();
 
@@ -34,7 +34,7 @@ public class Entity : ThinkingSpawnable
         dieAudioClip = spawnableDataRef.dieClip;
 
         navMeshAgent.speed = speed;
-        animator.SetFloat("MoveSpeed", speed); //will act as multiplier to the speed of the run animation clip
+        // animator.SetFloat("MoveSpeed", speed); //will act as multiplier to the speed of the run animation clip
 
         state = States.Idle;
         navMeshAgent.enabled = true;
@@ -54,7 +54,7 @@ public class Entity : ThinkingSpawnable
 
         navMeshAgent.SetDestination(target.transform.position);
         navMeshAgent.isStopped = false;
-        animator.SetBool("IsMoving", true);
+        // animator.SetBool("IsMoving", true);
     }
 
     public override void StartAttack()
@@ -62,14 +62,14 @@ public class Entity : ThinkingSpawnable
         base.StartAttack();
 
         navMeshAgent.isStopped = true;
-        animator.SetBool("IsMoving", false);
+        // animator.SetBool("IsMoving", false);
     }
 
     public override void DealBlow()
     {
         base.DealBlow();
 
-        animator.SetTrigger("Attack");
+        // animator.SetTrigger("Attack");
         transform.forward = (target.transform.position - transform.position).normalized; //turn towards the target
     }
 
@@ -78,7 +78,7 @@ public class Entity : ThinkingSpawnable
         base.Stop();
 
         navMeshAgent.isStopped = true;
-        animator.SetBool("IsMoving", false);
+        // animator.SetBool("IsMoving", false);
     }
 
     protected override void Die()
@@ -86,7 +86,7 @@ public class Entity : ThinkingSpawnable
         base.Die();
 
         navMeshAgent.enabled = false;
-        animator.SetTrigger("IsDead");
+        // animator.SetTrigger("IsDead");
     }
 
 }

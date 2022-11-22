@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     public bool autoStart = false;
 
     [Header("Public References")]
-    public GameObject playerCastle;
 
     private SpawnManager spawnManager;
 
@@ -21,9 +20,9 @@ public class GameManager : MonoBehaviour
 
     // These need to be worked on.s
     private List<ThinkingSpawnable> player;
-    private List<ThinkingSpawnable> castle;
+    [SerializeField] private ThinkingSpawnable castle;
 
-    private bool gameOver = false;
+    // private bool gameOver = false;
     private bool updateAllSpawnables = false;
 
 
@@ -58,8 +57,10 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
+        /*
         if (gameOver)
             return;
+        */
 
         ThinkingSpawnable targetToPass;
         ThinkingSpawnable s;
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour
         for (int spawnableN = 0; spawnableN < allThinkingSpawnables.Count; spawnableN++)
         {
             s = allThinkingSpawnables[spawnableN];
-
+            
             if (updateAllSpawnables)
                 s.state = ThinkingSpawnable.States.Idle;
 
@@ -105,16 +106,9 @@ public class GameManager : MonoBehaviour
         // and save min as min to assign to targetToPass.
         // float minDistance = Mathf.Infinity;
 
-        // This is wrong and will have to be remade but works for now
-        if (targetType == Spawnable.SpawnableType.Player)
-        {
-            targetToPass = list[0];
-            targetFound = true;
-        }
-
         if (targetType == Spawnable.SpawnableType.Castle)
         {
-            targetToPass = list[0];
+            targetToPass = castle;
             targetFound = true;
         }
 
@@ -128,7 +122,7 @@ public class GameManager : MonoBehaviour
             case Spawnable.SpawnableType.Player:
                 return player;
             case Spawnable.SpawnableType.Castle:
-                return castle;
+                return new List<ThinkingSpawnable>() { castle };
             default:
                 Debug.LogError("Wrong faction when trying to get attack list");
                 return null;
@@ -163,10 +157,6 @@ public class GameManager : MonoBehaviour
             if (s.spawnableType == Spawnable.SpawnableType.Building)
             {
                 playerBuildings.Add(s);
-            }
-            else if (s.spawnableType == Spawnable.SpawnableType.Castle)
-            {
-                castle.Add(s);
             }
             else if (s.spawnableType == Spawnable.SpawnableType.Player)
             {
