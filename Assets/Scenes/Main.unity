@@ -297,12 +297,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 963194227}
+  spawn: {fileID: 55281129}
   enemyRoadFieldMask:
     serializedVersion: 2
     m_Bits: 64
   playerFieldMask:
     serializedVersion: 2
     m_Bits: 64
+  spawnEveryNSecond: 0
 --- !u!1 &413629089
 GameObject:
   m_ObjectHideFlags: 0

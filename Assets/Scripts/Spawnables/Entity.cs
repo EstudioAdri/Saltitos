@@ -10,15 +10,55 @@ public class Entity : ThinkingSpawnable
 
     private Animator animator;
     private NavMeshAgent navMeshAgent;
+    [SerializeField] private GameManager gameManager;
 
     private void Awake()
     {
-        spawnableType = Spawnable.SpawnableType.Entity;
+        gameManager = FindObjectOfType<GameManager>();
         // animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>(); //will be disabled until Activate is called
         audioSource = GetComponent<AudioSource>();
-
+        spawnableType = Spawnable.SpawnableType.Entity;
         navMeshAgent.updateRotation = false;
+    }
+
+    private void Start()
+    {
+        navMeshAgent.stoppingDistance = attackRange;
+    }
+
+    private void Update()
+    {
+        //if (gameManager.UpdateAllSpawnables)
+        //    state = ThinkingSpawnable.States.Idle;
+        
+        ThinkingSpawnable targetToPass;
+
+        switch (state)
+        {
+            case ThinkingSpawnable.States.Idle:
+                bool targetFound = gameManager.FindClosestInList(transform.position, gameManager.GetAttackList(faction, targetType),
+                    targetType, out targetToPass);
+
+                if (!targetFound)
+                    Debug.LogError("No targets found");
+
+                SetTarget(targetToPass);
+                Seek();
+
+                break;
+
+            case ThinkingSpawnable.States.Seeking:
+                if (navMeshAgent.isStopped)
+                {
+                    Stop();
+                }
+                else
+                {
+                    Seek();
+                }
+                break;
+        }
     }
 
     public void Activate(SpawnableData spawnableDataRef)
@@ -50,10 +90,13 @@ public class Entity : ThinkingSpawnable
         if (target == null)
             return;
 
-        base.Seek();
+        if (Vector3.Distance(target.transform.position, transform.position) > attackRange)
+        {
+            base.Seek();
+            navMeshAgent.SetDestination(target.transform.position);
+            navMeshAgent.isStopped = false;
+        }
 
-        navMeshAgent.SetDestination(target.transform.position);
-        navMeshAgent.isStopped = false;
         // animator.SetBool("IsMoving", true);
     }
 
@@ -71,14 +114,6 @@ public class Entity : ThinkingSpawnable
 
         // animator.SetTrigger("Attack");
         transform.forward = (target.transform.position - transform.position).normalized; //turn towards the target
-    }
-
-    public override void Stop()
-    {
-        base.Stop();
-
-        navMeshAgent.isStopped = true;
-        // animator.SetBool("IsMoving", false);
     }
 
     protected override void Die()
