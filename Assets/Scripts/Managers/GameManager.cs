@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public bool GameOver { get; set; }
 
     [SerializeField] int fpsTarget = 120;
+    [SerializeField] private GameObject playerPrefab;
 
     [Header("Settings")]
     public bool autoStart = false;
@@ -15,10 +16,12 @@ public class GameManager : MonoBehaviour
 
 
     private SpawnManager spawnManager;
+    
 
     private List<ThinkingSpawnable> playerBuildings, playerUnits, enemyUnits;
     private List<ThinkingSpawnable> allPlayer, allEnemy;
     private List<ThinkingSpawnable> allThinkingSpawnables;
+    
 
     // These need to be worked on.s
     private List<ThinkingSpawnable> player;
@@ -39,6 +42,8 @@ public class GameManager : MonoBehaviour
         allThinkingSpawnables = new List<ThinkingSpawnable>();
         player = new List<ThinkingSpawnable>();
 
+
+
         // listener al spawn del spawnmanager
         spawnManager.OnSpawn += SpawnSpawnable;
     }
@@ -46,7 +51,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        GameObject playerInstantiation = Instantiate<GameObject>(playerPrefab);
+        playerInstantiation.transform.position = new Vector3(10, 0, 10);
+
         once = true;
+
     }
 
     public void GameOverEvent()

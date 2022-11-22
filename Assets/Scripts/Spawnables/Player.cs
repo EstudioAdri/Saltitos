@@ -1,18 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Player : ThinkingSpawnable
 {
     [SerializeField] float speedMultiplier;
     [SerializeField] Rigidbody PlayerRB;
+    NavMeshAgent playerAgent;
     void Start()
     {
         PlayerRB = GetComponent<Rigidbody>();
+        playerAgent = GetComponent<NavMeshAgent>();
+        playerAgent.enabled = true;
+
+
+
     }
 
     void FixedUpdate()
     {
+
+        if (Input.GetMouseButton(1))
+        {
+            MovePlayer();
+        }
+
         if (Input.anyKey)
         {
             int targetRotation = 0;
@@ -57,6 +70,17 @@ public class Player : ThinkingSpawnable
             }
              
             transform.rotation = Quaternion.Euler(new Vector3(0, targetRotation, 0));            
+        }
+    }
+
+    void MovePlayer()
+    {
+        Ray moveRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit moveInfo;
+        if (Physics.Raycast(moveRay, out moveInfo, Mathf.Infinity))        {
+            
+            playerAgent.stoppingDistance = 0f;
+            playerAgent.SetDestination(moveInfo.point);
         }
     }
 }
