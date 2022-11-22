@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fbde65a8211fc54cba2def6f2febe35, type: 3}
   m_Name: TestCastle
   m_EditorClassIdentifier: 
+  Faction: 0
   sType: 5
-  associatedPrefab: {fileID: 8768162563970878125, guid: 772d28f795a500b40a4c15fd093d2cf1, type: 3}
-  alternatePrefab: {fileID: 8768162563970878125, guid: 772d28f795a500b40a4c15fd093d2cf1, type: 3}
+  associatedPrefab: {fileID: 8057230704927882257, guid: 8e8d8f26a3d164649aeda3fe8953c25c, type: 3}
+  alternatePrefab: {fileID: 8057230704927882257, guid: 8e8d8f26a3d164649aeda3fe8953c25c, type: 3}
   speed: 0
   attackType: 0
   targetType: 1
