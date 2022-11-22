@@ -5,13 +5,14 @@ using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
+    public bool GameOver { get; set; }
+
     [SerializeField] int fpsTarget = 120;
 
     [Header("Settings")]
     public bool autoStart = false;
     private bool once;
 
-    [Header("Public References")]
 
     private SpawnManager spawnManager;
 
@@ -23,8 +24,6 @@ public class GameManager : MonoBehaviour
     private List<ThinkingSpawnable> player;
     [SerializeField] private ThinkingSpawnable castle;
 
-    // private bool gameOver = false;
-    private bool updateAllSpawnables = false;
 
 
     private void Awake()
@@ -50,59 +49,24 @@ public class GameManager : MonoBehaviour
         once = true;
     }
 
-    public void GameOver()
+    public void GameOverEvent()
     {
 
     }
 
     public void Update()
     {
-        /*
-        if (gameOver)
+        if (GameOver)
             return;
-        */
+        
         if (once)
         {
             StartCoroutine(spawnManager.SpawnPeriodic(Spawnable.SpawnableType.Entity, Spawnable.Faction.Enemy));
             once = false;
         }
-
-
-        ThinkingSpawnable targetToPass;
-        ThinkingSpawnable s;
-
-        for (int spawnableN = 0; spawnableN < allThinkingSpawnables.Count; spawnableN++)
-        {
-            s = allThinkingSpawnables[spawnableN];
-            
-            if (updateAllSpawnables)
-                s.state = ThinkingSpawnable.States.Idle;
-
-            switch (s.state)
-            {
-                case ThinkingSpawnable.States.Idle:
-                    bool targetFound = FindClosestInList(s.transform.position, GetAttackList(s.faction, s.targetType), s.targetType, out targetToPass);
-
-                    if (!targetFound)
-                        Debug.LogError("No targets found");
-
-                    s.SetTarget(targetToPass);
-                    s.Seek();
-                    break;
-
-                case ThinkingSpawnable.States.Seeking:
-                    if (s.IsTargetInRange())
-                    {
-                        s.Stop();
-                    }
-                    break;
-            }
-        }
-
-        updateAllSpawnables = false;
     }
 
-    private bool FindClosestInList(Vector3 p, List<ThinkingSpawnable> list, Spawnable.SpawnableType targetType, out ThinkingSpawnable targetToPass)
+    public bool FindClosestInList(Vector3 p, List<ThinkingSpawnable> list, Spawnable.SpawnableType targetType, out ThinkingSpawnable targetToPass)
     {
         targetToPass = null;
 
@@ -121,7 +85,7 @@ public class GameManager : MonoBehaviour
         return targetFound;
     }
 
-    private List<ThinkingSpawnable> GetAttackList(Spawnable.Faction f, Spawnable.SpawnableType spawnableTarget)
+    public List<ThinkingSpawnable> GetAttackList(Spawnable.Faction f, Spawnable.SpawnableType spawnableTarget)
     {
         switch (spawnableTarget)
         {
@@ -141,9 +105,6 @@ public class GameManager : MonoBehaviour
         GameObject newSpawnableGO = Instantiate<GameObject>(enemyPrefabToSpawn);
         newSpawnableGO.transform.position = position;
         SetupSpawnable(newSpawnableGO, spawnData);
-
-        // This way we start updating after an spawnable has been instantiated
-        updateAllSpawnables = true;
     }
 
     private void SetupSpawnable(GameObject go, SpawnableData spawnableData)

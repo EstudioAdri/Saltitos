@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class ThinkingSpawnable : Spawnable
 {
-    [HideInInspector]public States state;
+    public States state;
     public enum States
     {
         Idle,
@@ -67,7 +67,7 @@ public class ThinkingSpawnable : Spawnable
     }
     public bool IsTargetInRange()
     {
-        return (transform.position - target.transform.position).sqrMagnitude <= attackRange * attackRange;
+        return Vector3.Distance(target.transform.position, transform.position) < attackRange;
     }
     public virtual void Stop()
     {
