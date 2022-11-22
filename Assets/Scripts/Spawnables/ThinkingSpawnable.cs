@@ -73,6 +73,12 @@ public class ThinkingSpawnable : Spawnable
     {
         state = States.Idle;
     }
+
+    public virtual void LookTowards(Vector3 target)
+    {
+        transform.LookAt(new Vector3(target.x, transform.position.y, target.z));
+    }
+
     protected virtual void Die()
     {
         state = States.Dead;

@@ -7,10 +7,10 @@ public class Entity : ThinkingSpawnable
 
 {
     private float speed;
-
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     [SerializeField] private GameManager gameManager;
+    Vector3 lastPosition;
 
     private void Awake()
     {
@@ -24,15 +24,16 @@ public class Entity : ThinkingSpawnable
 
     private void Start()
     {
+        lastPosition = transform.position;
         navMeshAgent.stoppingDistance = attackRange;
     }
-
+     
     private void Update()
     {
-        //if (gameManager.UpdateAllSpawnables)
-        //    state = ThinkingSpawnable.States.Idle;
-        
         ThinkingSpawnable targetToPass;
+
+        Vector3 headingTo = transform.position + (transform.position - lastPosition); // Calculates where the gameObject will be in the next frame
+        LookTowards(new Vector3(headingTo.x, transform.position.y, headingTo.z));
 
         switch (state)
         {
@@ -52,6 +53,8 @@ public class Entity : ThinkingSpawnable
                 if (navMeshAgent.isStopped)
                 {
                     Stop();
+                    if (target != null)
+                        LookTowards(target.transform.position);
                 }
                 else
                 {
@@ -59,6 +62,8 @@ public class Entity : ThinkingSpawnable
                 }
                 break;
         }
+
+        lastPosition = transform.position;
     }
 
     public void Activate(SpawnableData spawnableDataRef)
