@@ -6,8 +6,6 @@ using UnityEngine.AI;
 public class Entity : ThinkingSpawnable
 
 {
-    private float speed;
-
     private Animator animator;
     private NavMeshAgent navMeshAgent;
 
@@ -28,14 +26,12 @@ public class Entity : ThinkingSpawnable
         targetType = spawnableDataRef.targetType;
         attackRange = spawnableDataRef.attackRange;
         attackRatio = spawnableDataRef.attackRatio;
-        speed = spawnableDataRef.speed;
+        navMeshAgent.speed = spawnableDataRef.speed;
         damage = spawnableDataRef.damagePerAttack;
         attackAudioClip = spawnableDataRef.attackClip;
         dieAudioClip = spawnableDataRef.dieClip;
 
-        navMeshAgent.speed = speed;
         // animator.SetFloat("MoveSpeed", speed); //will act as multiplier to the speed of the run animation clip
-
         state = States.Idle;
         navMeshAgent.enabled = true;
     }
