@@ -20,12 +20,14 @@ public class CameraControl : MonoBehaviour
         ScreenWidth = Screen.width;
         ScreenHeight = Screen.height;
         camera = Camera.main;
+
+        player = FindObjectOfType<Player>().gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!FindObjectOfType<Player>())
+        if (player == null)
         {
             player = FindObjectOfType<Player>().gameObject;
         }
