@@ -20,6 +20,7 @@ public class CameraControl : MonoBehaviour
         ScreenWidth = Screen.width;
         ScreenHeight = Screen.height;
         camera = Camera.main;
+
         player = FindObjectOfType<Player>().gameObject;
     }
 
