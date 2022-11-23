@@ -26,4 +26,11 @@ public class Spawnable : MonoBehaviour
         Enemy,
         None,
     }
+
+    public enum EnemyType
+    {
+        NotEnemy,
+        Alien,
+        SeatIbiza
+    }
 }

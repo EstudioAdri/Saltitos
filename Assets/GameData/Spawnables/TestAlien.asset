@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: TestAlien
   m_EditorClassIdentifier: 
   Faction: 1
-  sType: 1
+  SpawnableType: 0
+  EnemyType: 1
   associatedPrefab: {fileID: 8768162563970878125, guid: 772d28f795a500b40a4c15fd093d2cf1, type: 3}
   alternatePrefab: {fileID: 8768162563970878125, guid: 772d28f795a500b40a4c15fd093d2cf1, type: 3}
   speed: 4

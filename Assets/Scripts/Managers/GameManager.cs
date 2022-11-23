@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public bool autoStart = false;
     private bool once;
 
+    [Header("Game session parameters")]
+    [SerializeField] private Spawnable.EnemyType enemyToSpawn;
 
     private SpawnManager spawnManager;
     
@@ -71,7 +73,7 @@ public class GameManager : MonoBehaviour
         
         if (once)
         {
-            StartCoroutine(spawnManager.SpawnPeriodic(Spawnable.SpawnableType.Entity, Spawnable.Faction.Enemy));
+            StartCoroutine(spawnManager.SpawnPeriodic(Spawnable.SpawnableType.Entity, Spawnable.Faction.Enemy, enemyToSpawn));
             once = false;
         }
     }
