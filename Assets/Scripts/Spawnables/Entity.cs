@@ -21,16 +21,25 @@ public class Entity : ThinkingSpawnable
         audioSource = GetComponent<AudioSource>();
         spawnableType = Spawnable.SpawnableType.Entity;
         navMeshAgent.updateRotation = false;
+        
     }
 
     private void Start()
     {
         lastPosition = transform.position;
-        navMeshAgent.stoppingDistance = attackRange;
+        navMeshAgent.stoppingDistance = attackRange;        
+        
+        switch (gameObject.name)// Sorts entities in Scene Hierarchy. When Creating new Entity type add it in this switch
+        {
+            case "Alien(Clone)":
+                this.transform.parent = GameObject.Find("Aliens").transform;
+                break;
+        }         
+        
     }
      
     private void Update()
-    {
+    {        
         ThinkingSpawnable targetToPass;
 
         Vector3 headingTo = transform.position + (transform.position - lastPosition); // Calculates where the gameObject will be in the next frame
@@ -108,13 +117,15 @@ public class Entity : ThinkingSpawnable
 
     private void OnTriggerEnter(Collider other)
     {
-        GameObject collidedWith = other.gameObject;       
+        GameObject collidedWith = other.gameObject;
+       
         switch (collidedWith.tag)
         {
             case ("Core"):
-                if (this.state == States.Seeking)// Se chequea el estado seeking porque no hay forma de diferenciar a una torreta de un enemigo, ambos son entity. Arreglar ésto
-                {
+                if (this.faction == Faction.Enemy)
+                { 
                     Destroy(this.gameObject);
+                    print(this.faction);
                     //TODO damage to core
                 }              
                     break;
