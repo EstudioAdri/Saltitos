@@ -7,7 +7,8 @@ public class SpawnableData : ScriptableObject
 {
     [Header("Common")]
     public Spawnable.Faction Faction;
-    public Spawnable.SpawnableType sType;
+    public Spawnable.SpawnableType SpawnableType;
+    public Spawnable.EnemyType EnemyType;
     public GameObject associatedPrefab;
     public GameObject alternatePrefab;
 

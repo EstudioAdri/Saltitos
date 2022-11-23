@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,30 +10,37 @@ public class SpawnManager : MonoBehaviour
 
     // Layer masks que van seteadas en la interfaz
     [SerializeField] private GameObject spawn;
+    [SerializeField] private float spawnEveryNSecond;
+    [SerializeField] private List<SpawnableData> AvailableEnemiesToSpawn;
     public LayerMask enemyRoadFieldMask, playerFieldMask;
     public UnityAction<SpawnableData, Vector3> OnSpawn;
-    [SerializeField] private float spawnEveryNSecond;
+
     private Vector3 inputCreationOffset = new Vector3(0f, 0f, 1f); //offsets the creation of units so that they are not under the player's finger
 
 
-    public IEnumerator SpawnPeriodic(Spawnable.SpawnableType type, Spawnable.Faction faction)
+    public IEnumerator SpawnPeriodic(Spawnable.SpawnableType type, Spawnable.Faction faction, Spawnable.EnemyType enemyToSpawn)
     {
-        while(true)
+        while (true)
         {
-            SpawnFromTypeAndFaction(type, faction);
+            SpawnFromTypeAndFaction(type, faction, enemyToSpawn);
             yield return new WaitForSeconds(spawnEveryNSecond);
         }
 
     }
 
-    public void SpawnFromTypeAndFaction(Spawnable.SpawnableType type, Spawnable.Faction faction)
+    public void SpawnFromTypeAndFaction(Spawnable.SpawnableType type, Spawnable.Faction faction, Spawnable.EnemyType whichEnemy)
     {
         switch (type)
         {
             case Spawnable.SpawnableType.Entity:
                 if (Spawnable.Faction.Enemy == faction)
                 {
-                    OnSpawn(Resources.Load<SpawnableData>("GameData/Spawnables/TestAlien"), spawn.transform.position);
+                    SpawnableData spawnableData = AvailableEnemiesToSpawn.Where(x => x.EnemyType == whichEnemy &&
+                                                                                               x.EnemyType != Spawnable.EnemyType.NotEnemy).FirstOrDefault();
+                    if (spawnableData != null)
+                        OnSpawn(spawnableData, spawn.transform.position);
+                    else
+                        Debug.Log("SpawnManager has not spawnableData selected");
                 }
                 break;
             default:
@@ -59,7 +67,7 @@ public class SpawnManager : MonoBehaviour
                     case Spawnable.SpawnableType.Castle:
                         OnSpawn(Resources.Load<SpawnableData>("GameData/Spawnables/TestCastle"), hit.point + inputCreationOffset);
                         break;
-                } 
+                }
             }
         }
     }

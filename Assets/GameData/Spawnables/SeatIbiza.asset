@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fbde65a8211fc54cba2def6f2febe35, type: 3}
+  m_Name: SeatIbiza
+  m_EditorClassIdentifier: 
+  Faction: 1
+  SpawnableType: 0
+  EnemyType: 2
+  associatedPrefab: {fileID: 785449630578230464, guid: d184e51d685f09c4f96b2d660f31b433, type: 3}
+  alternatePrefab: {fileID: 785449630578230464, guid: d184e51d685f09c4f96b2d660f31b433, type: 3}
+  speed: 6
+  attackType: 0
+  targetType: 2
+  attackRatio: 1
+  damagePerAttack: 2
+  attackRange: 5
+  hitPoints: 20
+  attackClip: {fileID: 0}
+  dieClip: {fileID: 0}
