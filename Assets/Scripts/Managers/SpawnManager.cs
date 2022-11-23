@@ -77,6 +77,7 @@ public class SpawnManager : MonoBehaviour
         {
             // Debug.Log("Button Down OK");
             SpawnEntityManual(Spawnable.SpawnableType.Entity);
+
         }
 
         if (Input.GetKeyDown(KeyCode.A))
