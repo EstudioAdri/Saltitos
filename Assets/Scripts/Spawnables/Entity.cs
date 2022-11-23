@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -103,6 +104,21 @@ public class Entity : ThinkingSpawnable
         }
 
         // animator.SetBool("IsMoving", true);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        GameObject collidedWith = other.gameObject;       
+        switch (collidedWith.tag)
+        {
+            case ("Core"):
+                if (this.state == States.Seeking)// Se chequea el estado seeking porque no hay forma de diferenciar a una torreta de un enemigo, ambos son entity. Arreglar ésto
+                {
+                    Destroy(this.gameObject);
+                    //TODO damage to core
+                }              
+                    break;
+        }
     }
 
     public override void StartAttack()
