@@ -34,6 +34,9 @@ public class Entity : ThinkingSpawnable
             case "Alien(Clone)":
                 this.transform.parent = GameObject.Find("Aliens").transform;
                 break;
+            case "SeatIbiza(Clone)":
+                this.transform.parent = GameObject.Find("SeatsIbiza").transform;
+                break;            
         }         
         
     }
