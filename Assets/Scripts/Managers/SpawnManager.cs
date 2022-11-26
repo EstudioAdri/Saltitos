@@ -42,14 +42,14 @@ public class SpawnManager : MonoBehaviour
             case Spawnable.SpawnableType.Entity:
                 if (Spawnable.Faction.Enemy == faction)
                 {
-                    LocatedPlaceable spawn = environmentManager.GetFirstAvailableSpawn();
+                    Spawn spawn = environmentManager.GetFirstAvailableSpawn();
 
                     if (spawn != null)
                     {
                         SpawnableData spawnableData = AvailableEnemiesToSpawn.Where(x => x.EnemyType == whichEnemy &&
                                                                                                     x.EnemyType != Spawnable.EnemyType.NotEnemy).FirstOrDefault();
                         if (spawnableData != null)
-                            OnSpawn(spawnableData, spawn.transform.position);
+                            OnSpawn(spawnableData, spawn.spawnPoint.position);
                         else
                             Debug.Log("SpawnManager has not spawnableData selected");
                     }

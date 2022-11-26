@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
+
     public bool GameOver { get; set; }
 
     [SerializeField] int fpsTarget = 120;
@@ -114,7 +115,7 @@ public class GameManager : MonoBehaviour
     private void SpawnSpawnable(SpawnableData spawnData, Vector3 position)
     {
         GameObject enemyPrefabToSpawn = spawnData.associatedPrefab;
-        GameObject newSpawnableGO = Instantiate<GameObject>(enemyPrefabToSpawn);
+        GameObject newSpawnableGO = Instantiate(enemyPrefabToSpawn);
         newSpawnableGO.transform.position = position;
         SetupSpawnable(newSpawnableGO, spawnData);
     }

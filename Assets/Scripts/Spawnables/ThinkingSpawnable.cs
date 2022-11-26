@@ -37,10 +37,10 @@ public class ThinkingSpawnable : Spawnable
 
     public UnityAction<ThinkingSpawnable> OnDealDamage, OnProjectileFired;
 
-    public virtual void SetTarget(ThinkingSpawnable t)
+    public virtual void SetTarget(ThinkingSpawnable thinkingSpawnable)
     {
-        target = t;
-        t.OnDie += TargetIsDead;
+        target = thinkingSpawnable;
+        thinkingSpawnable.OnDie += TargetIsDead;
     }
 
     public virtual void StartAttack()

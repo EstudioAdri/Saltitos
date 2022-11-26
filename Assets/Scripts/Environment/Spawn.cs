@@ -5,6 +5,8 @@ using static Placeable;
 
 public class Spawn : LocatedPlaceable
 {
+    public Transform spawnPoint;
+
     public void Awake()
     {
         placeableType = PlaceableType.Spawn;

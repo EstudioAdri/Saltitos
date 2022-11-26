@@ -22,7 +22,7 @@ MonoBehaviour:
   targetType: 2
   attackRatio: 1
   damagePerAttack: 2
-  attackRange: 5
+  attackRange: 1
   hitPoints: 20
   attackClip: {fileID: 0}
   dieClip: {fileID: 0}

@@ -52,7 +52,7 @@ public class Entity : ThinkingSpawnable
             case ThinkingSpawnable.States.Idle:
                 bool targetFound = gameManager.FindClosestInList(transform.position, gameManager.GetAttackList(faction, targetType),
                     targetType, out targetToPass);
-
+                
                 if (!targetFound)
                     Debug.LogError("No targets found");
 

@@ -9,15 +9,10 @@ public class EnvironmentManager : MonoBehaviour
 
     [SerializeField] private List<PlaceableData> AvailablePlaceablesToSpawn;
 
-    private List<LocatedPlaceable> AllSpawnPlaceables;
+    private List<Spawn> AllSpawnPlaceables = new();
     public LayerMask obstacleFieldMask;
 
     private Vector3 inputCreationOffset = new Vector3(0f, 1.89f, 1f); //offsets the creation of units so that they are not under the player's finger
-
-    private void Awake()
-    {
-        AllSpawnPlaceables = new List<LocatedPlaceable>();
-    }
 
     void Update()
     {
@@ -27,7 +22,7 @@ public class EnvironmentManager : MonoBehaviour
         }
     }
 
-    public LocatedPlaceable GetFirstAvailableSpawn()
+    public Spawn GetFirstAvailableSpawn()
     {
         return AllSpawnPlaceables.First();
     }
@@ -43,7 +38,7 @@ public class EnvironmentManager : MonoBehaviour
     private void PlacePlaceable(PlaceableData placeableData, Vector3 position)
     {
         GameObject placeablePrefabToPlace = placeableData.associatedPrefab;
-        GameObject newPlaceableGO = Instantiate<GameObject>(placeablePrefabToPlace);
+        GameObject newPlaceableGO = Instantiate(placeablePrefabToPlace);
         newPlaceableGO.transform.position = position;
         SetupPlaceable(newPlaceableGO, placeableData);
     }
@@ -84,11 +79,11 @@ public class EnvironmentManager : MonoBehaviour
         }
     }
 
-    private void AddPlaceableToList(LocatedPlaceable l)
+    private void AddPlaceableToList(LocatedPlaceable locatedPlaceable)
     {
-        if (l.placeableType == Placeable.PlaceableType.Spawn)
+        if (locatedPlaceable.placeableType == Placeable.PlaceableType.Spawn)
         {
-            AllSpawnPlaceables.Add(l);
+            AllSpawnPlaceables.Add(locatedPlaceable as Spawn);
         }
         else
         {
