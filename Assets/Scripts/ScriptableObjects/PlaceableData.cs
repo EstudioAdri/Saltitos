@@ -6,6 +6,6 @@ using UnityEngine;
 public class PlaceableData : ScriptableObject
 {
     [Header("Common")]
-    public Placeable.PlaceableType PlaceableType;
+    public Placeable.PlaceableType placeableType;
     public GameObject associatedPrefab;
 }

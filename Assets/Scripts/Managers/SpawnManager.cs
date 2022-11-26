@@ -19,6 +19,10 @@ public class SpawnManager : MonoBehaviour
 
     private Vector3 inputCreationOffset = new Vector3(0f, 0f, 1f); //offsets the creation of units so that they are not under the player's finger
 
+    public void Awake()
+    {
+        environmentManager = FindObjectOfType<EnvironmentManager>();
+    }
     public IEnumerator SpawnPeriodic(Spawnable.SpawnableType type, Spawnable.Faction faction, Spawnable.EnemyType enemyToSpawn)
     {
         while (true)
@@ -26,7 +30,6 @@ public class SpawnManager : MonoBehaviour
             if (toggleEnemySpawn)
             {
                 SpawnFromTypeAndFaction(type, faction, enemyToSpawn);
-                
             }
             yield return new WaitForSeconds(spawnEveryNSecond);
         }
@@ -34,9 +37,6 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnFromTypeAndFaction(Spawnable.SpawnableType type, Spawnable.Faction faction, Spawnable.EnemyType whichEnemy)
     {
-
-
-
         switch (type)
         {
             case Spawnable.SpawnableType.Entity:
@@ -57,7 +57,6 @@ public class SpawnManager : MonoBehaviour
                     {
                         Debug.Log("There are no spawns in this environment");
                     }
-
                 }
                 break;
             default:
@@ -102,7 +101,6 @@ public class SpawnManager : MonoBehaviour
         {
             // Debug.Log("Button Down OK");
             SpawnEntityManual(Spawnable.SpawnableType.Entity);
-
         }
 
         if (Input.GetKeyDown(KeyCode.A))

@@ -30,7 +30,7 @@ public class EnvironmentManager : MonoBehaviour
     private void SetupPlaceable(GameObject go, PlaceableData placeableData)
     {
         // aqui le podemos poner scripts en el futuro en lugar del located a pelo
-        LocatedPlaceable placeableScript = go.GetComponent<LocatedPlaceable>();
+        Spawn placeableScript = go.GetComponent<Spawn>();
         placeableScript.Activate(placeableData);
         AddPlaceableToList(placeableScript);
     }
@@ -48,18 +48,16 @@ public class EnvironmentManager : MonoBehaviour
         switch (placeableType)
         {
             case Placeable.PlaceableType.Spawn:
-                PlaceableData placeableData = AvailablePlaceablesToSpawn.Where(x => x.PlaceableType == placeableType).FirstOrDefault();
+                PlaceableData placeableData = AvailablePlaceablesToSpawn.Where(x => x.placeableType == placeableType).FirstOrDefault();
 
-            if (placeableData != null)
-            {
-                Vector3 a = new Vector3(-11.8f, 1.89f, 0.5f);
-                PlacePlaceable(placeableData, a);
-            }
-
-            break;
+                if (placeableData != null)
+                {
+                    Vector3 a = new Vector3(-11.8f, 1.89f, 0.5f);
+                    PlacePlaceable(placeableData, a);
+                }
+                break;
         }
     }
-
 
     private void CreatePlaceable(Placeable.PlaceableType placeableType)
     {
@@ -72,12 +70,10 @@ public class EnvironmentManager : MonoBehaviour
             switch (placeableType)
             {
                 case Placeable.PlaceableType.Spawn:
-                    PlaceableData placeableData = AvailablePlaceablesToSpawn.Where(x => x.PlaceableType == placeableType).FirstOrDefault();
+                    PlaceableData placeableData = AvailablePlaceablesToSpawn.Where(x => x.placeableType == placeableType).FirstOrDefault();
 
                     if (placeableData != null)
                         PlacePlaceable(placeableData, hit.point + inputCreationOffset);
-
-
                     break;
             }
         }

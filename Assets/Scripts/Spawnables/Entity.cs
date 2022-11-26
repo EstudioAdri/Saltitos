@@ -21,7 +21,6 @@ public class Entity : ThinkingSpawnable
         audioSource = GetComponent<AudioSource>();
         spawnableType = Spawnable.SpawnableType.Entity;
         navMeshAgent.updateRotation = false;
-        
     }
 
     private void Start()
