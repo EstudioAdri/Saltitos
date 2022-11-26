@@ -21,7 +21,6 @@ public class Entity : ThinkingSpawnable
         audioSource = GetComponent<AudioSource>();
         spawnableType = Spawnable.SpawnableType.Entity;
         navMeshAgent.updateRotation = false;
-        
     }
 
     private void Start()
@@ -114,7 +113,6 @@ public class Entity : ThinkingSpawnable
             navMeshAgent.SetDestination(target.transform.position);
             navMeshAgent.isStopped = false;
         }
-
         // animator.SetBool("IsMoving", true);
     }
 
@@ -128,10 +126,9 @@ public class Entity : ThinkingSpawnable
                 if (this.faction == Faction.Enemy)
                 { 
                     Destroy(this.gameObject);
-                    print(this.faction);
                     //TODO damage to core
                 }              
-                    break;
+                break;
         }
     }
 
