@@ -148,8 +148,8 @@ GameObject:
   m_Component:
   - component: {fileID: 211908153}
   - component: {fileID: 211908152}
-  - component: {fileID: 211908154}
   - component: {fileID: 211908155}
+  - component: {fileID: 211908154}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -206,6 +206,8 @@ MonoBehaviour:
   AvailableEnemiesToSpawn:
   - {fileID: 11400000, guid: 9f7596feb58794dfc9069be242a65873, type: 2}
   - {fileID: 11400000, guid: 6d963bb8aab31274fbc75dcf69e838fb, type: 2}
+  toggleEnemySpawn: 0
+  environmentManager: {fileID: 211908155}
   enemyRoadFieldMask:
     serializedVersion: 2
     m_Bits: 64

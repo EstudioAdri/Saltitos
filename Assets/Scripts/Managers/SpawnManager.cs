@@ -12,6 +12,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private float spawnEveryNSecond;
     [SerializeField] private List<SpawnableData> AvailableEnemiesToSpawn;
     [SerializeField] private bool toggleEnemySpawn = false;
+    [SerializeField] private EnvironmentManager environmentManager;
 
     public LayerMask enemyRoadFieldMask, playerFieldMask;
     public UnityAction<SpawnableData, Vector3> OnSpawn;
@@ -41,10 +42,6 @@ public class SpawnManager : MonoBehaviour
             case Spawnable.SpawnableType.Entity:
                 if (Spawnable.Faction.Enemy == faction)
                 {
-                    // esto es una mierda, mirar como usar el unityaction de la linea
-                    // 17 para hacer como el listener pero con return y coger el firstavailable
-                    // spawn desde el propio evironmentmanager y no esta mierda
-                    EnvironmentManager environmentManager = GetComponent<EnvironmentManager>();
                     LocatedPlaceable spawn = environmentManager.GetFirstAvailableSpawn();
 
                     if (spawn != null)

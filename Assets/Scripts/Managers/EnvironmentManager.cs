@@ -16,9 +16,9 @@ public class EnvironmentManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            CreatePlaceable(Placeable.PlaceableType.Spawn);
+            CreateSpawn(Placeable.PlaceableType.Spawn);
         }
     }
 
@@ -42,6 +42,24 @@ public class EnvironmentManager : MonoBehaviour
         newPlaceableGO.transform.position = position;
         SetupPlaceable(newPlaceableGO, placeableData);
     }
+
+    public void CreateSpawn(Placeable.PlaceableType placeableType)
+    {
+        switch (placeableType)
+        {
+            case Placeable.PlaceableType.Spawn:
+                PlaceableData placeableData = AvailablePlaceablesToSpawn.Where(x => x.PlaceableType == placeableType).FirstOrDefault();
+
+            if (placeableData != null)
+            {
+                Vector3 a = new Vector3(-11.8f, 1.89f, 0.5f);
+                PlacePlaceable(placeableData, a);
+            }
+
+            break;
+        }
+    }
+
 
     private void CreatePlaceable(Placeable.PlaceableType placeableType)
     {

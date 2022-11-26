@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Spawnable.EnemyType enemyToSpawn;
 
     private SpawnManager spawnManager;
-    
+    private EnvironmentManager environmentManager;
 
     private List<ThinkingSpawnable> playerBuildings, playerUnits, enemyUnits;
     private List<ThinkingSpawnable> allPlayer, allEnemy;
@@ -34,8 +34,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Application.targetFrameRate = fpsTarget;
+        environmentManager = GetComponent<EnvironmentManager>();
         spawnManager = GetComponent<SpawnManager>();
-
         playerBuildings = new List<ThinkingSpawnable>();
         playerUnits = new List<ThinkingSpawnable>();
         enemyUnits = new List<ThinkingSpawnable>();
@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
 
         GameObject playerInstantiation = Instantiate<GameObject>(playerPrefab);
         playerInstantiation.transform.position = new Vector3(10, 0, 10);
+        environmentManager.CreateSpawn(Placeable.PlaceableType.Spawn);
+
 
         once = true;
 
