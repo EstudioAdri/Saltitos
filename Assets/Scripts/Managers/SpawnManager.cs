@@ -9,38 +9,58 @@ public class SpawnManager : MonoBehaviour
     public Camera mainCamera;
 
     // Layer masks que van seteadas en la interfaz
-    [SerializeField] private GameObject spawn;
     [SerializeField] private float spawnEveryNSecond;
     [SerializeField] private List<SpawnableData> AvailableEnemiesToSpawn;
+    [SerializeField] private bool toggleEnemySpawn = false;
+
     public LayerMask enemyRoadFieldMask, playerFieldMask;
     public UnityAction<SpawnableData, Vector3> OnSpawn;
 
     private Vector3 inputCreationOffset = new Vector3(0f, 0f, 1f); //offsets the creation of units so that they are not under the player's finger
 
-
     public IEnumerator SpawnPeriodic(Spawnable.SpawnableType type, Spawnable.Faction faction, Spawnable.EnemyType enemyToSpawn)
     {
         while (true)
         {
-            SpawnFromTypeAndFaction(type, faction, enemyToSpawn);
+            if (toggleEnemySpawn)
+            {
+                SpawnFromTypeAndFaction(type, faction, enemyToSpawn);
+                
+            }
             yield return new WaitForSeconds(spawnEveryNSecond);
         }
-
     }
 
     public void SpawnFromTypeAndFaction(Spawnable.SpawnableType type, Spawnable.Faction faction, Spawnable.EnemyType whichEnemy)
     {
+
+
+
         switch (type)
         {
             case Spawnable.SpawnableType.Entity:
                 if (Spawnable.Faction.Enemy == faction)
                 {
-                    SpawnableData spawnableData = AvailableEnemiesToSpawn.Where(x => x.EnemyType == whichEnemy &&
-                                                                                               x.EnemyType != Spawnable.EnemyType.NotEnemy).FirstOrDefault();
-                    if (spawnableData != null)
-                        OnSpawn(spawnableData, spawn.transform.position);
+                    // esto es una mierda, mirar como usar el unityaction de la linea
+                    // 17 para hacer como el listener pero con return y coger el firstavailable
+                    // spawn desde el propio evironmentmanager y no esta mierda
+                    EnvironmentManager environmentManager = GetComponent<EnvironmentManager>();
+                    LocatedPlaceable spawn = environmentManager.GetFirstAvailableSpawn();
+
+                    if (spawn != null)
+                    {
+                        SpawnableData spawnableData = AvailableEnemiesToSpawn.Where(x => x.EnemyType == whichEnemy &&
+                                                                                                    x.EnemyType != Spawnable.EnemyType.NotEnemy).FirstOrDefault();
+                        if (spawnableData != null)
+                            OnSpawn(spawnableData, spawn.transform.position);
+                        else
+                            Debug.Log("SpawnManager has not spawnableData selected");
+                    }
                     else
-                        Debug.Log("SpawnManager has not spawnableData selected");
+                    {
+                        Debug.Log("There are no spawns in this environment");
+                    }
+
                 }
                 break;
             default:
