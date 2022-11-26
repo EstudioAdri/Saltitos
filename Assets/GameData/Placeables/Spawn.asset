@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a001db4dfb2c4453b99882a1979644e4, type: 3}
   m_Name: Spawn
   m_EditorClassIdentifier: 
-  PlaceableType: 0
-  associatedPrefab: {fileID: 8973137250714910838, guid: cd5e2be7da84548b09140f2b994e6ba1, type: 3}
+  placeableType: 0
+  associatedPrefab: {fileID: 1850599302876061740, guid: 5f9303e96b38fc14b9e4b2d279e13762, type: 3}
+  spawnPoint: {fileID: 0}
