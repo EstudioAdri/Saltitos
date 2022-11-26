@@ -11,8 +11,11 @@ public class Spawn : LocatedPlaceable
     }
     public void Activate(PlaceableData placeableDataRef)
     {
-        placeablePrefab = placeableDataRef.associatedPrefab;
         placeableType = placeableDataRef.placeableType;
     }
 
+    private void Start()
+    {
+        transform.parent = GameObject.Find("Spawn Points").transform;
+    }
 }

@@ -14,6 +14,11 @@ public class EnvironmentManager : MonoBehaviour
 
     private Vector3 inputCreationOffset = new Vector3(0f, 1.89f, 1f); //offsets the creation of units so that they are not under the player's finger
 
+    private void Awake()
+    {
+        AllSpawnPlaceables = new List<LocatedPlaceable>();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.S))

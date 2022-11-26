@@ -65,29 +65,6 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private void SpawnEntityManual(Spawnable.SpawnableType type)
-    {
-        RaycastHit hit;
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
-        // Comprobamos si el click está dentro del fieldMask donde queremos spawnear enemgios
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, enemyRoadFieldMask))
-        {
-            if (OnSpawn != null)
-            {
-                switch (type)
-                {
-                    case Spawnable.SpawnableType.Entity:
-                        OnSpawn(Resources.Load<SpawnableData>("GameData/Spawnables/TestAlien"), hit.point + inputCreationOffset);
-                        break;
-                    case Spawnable.SpawnableType.Castle:
-                        OnSpawn(Resources.Load<SpawnableData>("GameData/Spawnables/TestCastle"), hit.point + inputCreationOffset);
-                        break;
-                }
-            }
-        }
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -97,16 +74,6 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            // Debug.Log("Button Down OK");
-            SpawnEntityManual(Spawnable.SpawnableType.Entity);
-        }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            // Debug.Log("Button Down OK");
-            SpawnEntityManual(Spawnable.SpawnableType.Castle);
-        }
     }
 }

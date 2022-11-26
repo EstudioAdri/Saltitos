@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8973137250714910835}
   - component: {fileID: 8973137250714910836}
   - component: {fileID: 8973137250714910837}
+  - component: {fileID: -4337181012361624887}
   m_Layer: 0
   m_Name: Spawn
   m_TagString: Untagged
@@ -97,3 +98,17 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4337181012361624887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8973137250714910838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1fab53a52d0947698606a09114113cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeableType: 0
+  placeablePrefab: {fileID: 0}

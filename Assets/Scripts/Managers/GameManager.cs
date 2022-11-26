@@ -44,8 +44,6 @@ public class GameManager : MonoBehaviour
         allThinkingSpawnables = new List<ThinkingSpawnable>();
         player = new List<ThinkingSpawnable>();
 
-
-
         // listener al spawn del spawnmanager
         spawnManager.OnSpawn += SpawnSpawnable;
     }
