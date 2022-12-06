@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -228,6 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 963194227}
   AvailablePlaceablesToSpawn:
+  - {fileID: 11400000, guid: d71e286fee5bc4ac891050a4ff4e0d6c, type: 2}
   - {fileID: 11400000, guid: 582470b0e60b7404889bc017848c0b9a, type: 2}
   obstacleFieldMask:
     serializedVersion: 2
@@ -847,6 +848,7 @@ MonoBehaviour:
   faction: 0
   targetType: 0
   dieAudioClip: {fileID: 0}
+  objectID: 
   state: 0
   target: {fileID: 0}
   hitPoints: 0

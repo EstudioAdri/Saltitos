@@ -18,7 +18,7 @@ public class EnvironmentManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            CreateSpawn(Placeable.PlaceableType.Spawn);
+            CreatePlaceable(Placeable.PlaceableType.Obstacle, "PineTree");
         }
     }
 
@@ -49,7 +49,7 @@ public class EnvironmentManager : MonoBehaviour
         {
             case Placeable.PlaceableType.Spawn:
                 PlaceableData placeableData = AvailablePlaceablesToSpawn.Where(x => x.placeableType == placeableType).FirstOrDefault();
-
+                Debug.Log("hola");
                 if (placeableData != null)
                 {
                     Vector3 a = new Vector3(-11.8f, 1.89f, 0.5f);
@@ -59,7 +59,7 @@ public class EnvironmentManager : MonoBehaviour
         }
     }
 
-    private void CreatePlaceable(Placeable.PlaceableType placeableType)
+    private void CreatePlaceable(Placeable.PlaceableType placeableType, string objectID)
     {
         RaycastHit hit;
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -67,15 +67,12 @@ public class EnvironmentManager : MonoBehaviour
         // Comprobamos si el click está dentro del fieldMask donde queremos spawnear enemgios
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, obstacleFieldMask))
         {
-            switch (placeableType)
-            {
-                case Placeable.PlaceableType.Spawn:
-                    PlaceableData placeableData = AvailablePlaceablesToSpawn.Where(x => x.placeableType == placeableType).FirstOrDefault();
+            PlaceableData placeableData = AvailablePlaceablesToSpawn.Where(x => x.placeableType == placeableType && x.objectID == objectID).FirstOrDefault();
 
-                    if (placeableData != null)
-                        PlacePlaceable(placeableData, hit.point + inputCreationOffset);
-                    break;
-            }
+            if (placeableData != null)
+                PlacePlaceable(placeableData, hit.point + inputCreationOffset);
+            else
+                Debug.Log("Error trinyg to create a placeable.");
         }
     }
 

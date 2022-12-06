@@ -9,4 +9,5 @@ public class PlaceableData : ScriptableObject
     public Placeable.PlaceableType placeableType;
     public GameObject associatedPrefab;
     public Transform spawnPoint;
+    public string objectID;
 }

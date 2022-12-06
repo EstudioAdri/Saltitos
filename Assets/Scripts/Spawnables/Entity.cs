@@ -89,7 +89,7 @@ public class Entity : ThinkingSpawnable
         damage = spawnableDataRef.damagePerAttack;
         attackAudioClip = spawnableDataRef.attackClip;
         dieAudioClip = spawnableDataRef.dieClip;
-
+        objectID = spawnableDataRef.objectID;
         navMeshAgent.speed = speed;
         // animator.SetFloat("MoveSpeed", speed); //will act as multiplier to the speed of the run animation clip
 

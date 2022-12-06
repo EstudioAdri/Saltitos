@@ -46,8 +46,7 @@ public class SpawnManager : MonoBehaviour
 
                     if (spawn != null)
                     {
-                        SpawnableData spawnableData = AvailableEnemiesToSpawn.Where(x => x.EnemyType == whichEnemy &&
-                                                                                                    x.EnemyType != Spawnable.EnemyType.NotEnemy).FirstOrDefault();
+                        SpawnableData spawnableData = AvailableEnemiesToSpawn.Where(x => x.objectID == "SeatIbiza").FirstOrDefault();
                         if (spawnableData != null)
                             OnSpawn(spawnableData, spawn.spawnPoint.position);
                         else

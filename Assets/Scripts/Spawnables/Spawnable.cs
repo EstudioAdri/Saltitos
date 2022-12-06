@@ -10,6 +10,7 @@ public class Spawnable : MonoBehaviour
     [HideInInspector] public Faction faction;
     [HideInInspector] public SpawnableType targetType;
     [HideInInspector] public AudioClip dieAudioClip;
+    [HideInInspector] public string objectID;
 
     public UnityAction<Spawnable> OnDie;
     public enum SpawnableType

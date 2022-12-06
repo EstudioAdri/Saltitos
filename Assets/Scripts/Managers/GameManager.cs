@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
     private List<ThinkingSpawnable> allPlayer, allEnemy;
     private List<ThinkingSpawnable> allThinkingSpawnables;
     
-
     // These need to be worked on.s
     private List<ThinkingSpawnable> player;
     [SerializeField] private ThinkingSpawnable castle;
