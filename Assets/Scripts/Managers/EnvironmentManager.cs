@@ -16,7 +16,7 @@ public class EnvironmentManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyUp(KeyCode.Q))
         {
             CreatePlaceable(Placeable.PlaceableType.Obstacle, "PineTree");
         }
@@ -49,7 +49,6 @@ public class EnvironmentManager : MonoBehaviour
         {
             case Placeable.PlaceableType.Spawn:
                 PlaceableData placeableData = AvailablePlaceablesToSpawn.Where(x => x.placeableType == placeableType).FirstOrDefault();
-                Debug.Log("hola");
                 if (placeableData != null)
                 {
                     Vector3 a = new Vector3(-11.8f, 1.89f, 0.5f);
@@ -65,9 +64,9 @@ public class EnvironmentManager : MonoBehaviour
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
         // Comprobamos si el click está dentro del fieldMask donde queremos spawnear enemgios
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, obstacleFieldMask))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            PlaceableData placeableData = AvailablePlaceablesToSpawn.Where(x => x.placeableType == placeableType && x.objectID == objectID).FirstOrDefault();
+            PlaceableData placeableData = AvailablePlaceablesToSpawn.Where(x => x.objectID == objectID).FirstOrDefault();
 
             if (placeableData != null)
                 PlacePlaceable(placeableData, hit.point + inputCreationOffset);
