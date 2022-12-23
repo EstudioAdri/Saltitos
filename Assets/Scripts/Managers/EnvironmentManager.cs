@@ -69,7 +69,7 @@ public class EnvironmentManager : MonoBehaviour
             PlaceableData placeableData = AvailablePlaceablesToSpawn.Where(x => x.objectID == objectID).FirstOrDefault();
 
             if (placeableData != null)
-                PlacePlaceable(placeableData, hit.point + inputCreationOffset);
+                PlacePlaceable(placeableData, hit.point);
             else
                 Debug.Log("Error trinyg to create a placeable.");
         }
